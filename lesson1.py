@@ -1,3 +1,10 @@
-print('test1')
-print 'test'
-print("Hello")
+a1 = 1
+a2 = 3
+b1 = 'cat'
+b2 = 'dog'
+c1 = [1, 2, 3]
+c2 = [4, 5, 6]
+d1 = {'1': 'cat', '2': 'dog'}
+d2 = {1: 'cat', 2: 'dog'}
+
+
