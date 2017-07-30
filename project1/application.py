@@ -1,5 +1,5 @@
 from project1.base_objects import *
-from project1.utils import Utils
+from project1.utils import Utils, Twillio
 import json
 
 
@@ -13,6 +13,7 @@ class UserOperations:
     def __init__(self):
         self.users = dict()
         self.utils = Utils()
+        self.twillio = Twillio()
 
     def load_users(self):
         self.users.clear()
@@ -34,6 +35,7 @@ class UserOperations:
 
         print('File was closed...')
         self.users[user.uuid] = user
+        self.twillio.send_text(phone_to=user.phone, text='You created user: {0}'.format(user.__dict__), phone_from='3473281403')
 
     def get_user_by_email(self, email):
         for user in self.users:
