@@ -1,0 +1,3 @@
+{"first_name": "Ilya", "last_name": "Stepanko", "email": "ilya.email@icloud.com", "phone": 7189097106, "uuid": "31af9d8f-9fd4-42ee-8b6a-4e65ebc2751f"}
+{"first_name": "Eugene", "last_name": "Krivchenko", "email": "eugene.krivchenko@gmail.com", "phone": 4087184002, "uuid": "f3adbbc4-699d-4c6a-9e99-b76e609aee1a"}
+{"first_name": "asdf", "last_name": "sdf", "email": "sdf", "phone": "sdf", "uuid": "1e95c50a-d4b6-486a-b015-cd76543d9529"}

@@ -1,8 +1,6 @@
-import uuid
 from project1.base_objects import *
 from project1.utils import Utils
 import json
-import time
 
 
 class Response:
@@ -16,16 +14,23 @@ class UserOperations:
         self.users = dict()
         self.utils = Utils()
 
+    def load_users(self):
+        self.users.clear()
+        with open('users.txt', 'r') as f:
+            for line in f:
+                user = json.loads(line)
+                self.users[user['uuid']] = User(**user)
+
     def create_user(self, first_name, last_name, email, phone):
         print('Creating user with email: {0} ...'.format(email))
         generated_uuid = self.utils.generate_uuid()
         print('Generated uuid {0}'.format(generated_uuid))
-        user = User(first_name, last_name, email, phone, uuid1=generated_uuid)
+        user = User(first_name, last_name, email, phone, uuid=generated_uuid)
         print('User {0} was successfully created and uuid {1} assigned!'.format(user.email, user.uuid))
 
-        with open('users.json', 'a') as f:
+        with open('users.txt', 'a') as f:
             print('File opened...')
-            f.write(json.dumps(user.__dict__))
+            f.write(json.dumps(user.__dict__) + '\n')
 
         print('File was closed...')
         self.users[user.uuid] = user
@@ -36,16 +41,46 @@ class UserOperations:
                 return Response(200, self.users[user])
         return Response(404, 'Not Found')
 
+    def delete_user_by_uuid(self, uuid):
+        del self.users[uuid]
+        with open('users.txt', 'w') as f:
+            users = list()
+            for user in self.users:
+                users.append(json.dumps(self.users[user].__dict__) + '\n')
+            f.writelines(users)
 
-user_operations = UserOperations()
+    def get_all_users(self):
+        return self.users.values()
 
-
-user_operations.create_user(first_name='Ilya', last_name='Stepanko', email='ilya.email@icloud.com', phone=7189097106)
-time.sleep(2)
-
-user_operations.create_user(first_name='Eugene', last_name='Krivchenko', email='eugene.krivchenko@gmail.com',
-                            phone=4087184002)
-
-resp = user_operations.get_user_by_email(email='ilya.email@icloud.co1m')
-if resp.status_code == 200:
-    print(resp.body.first_name)
+if __name__ == '__main__':
+    user_operations = UserOperations()
+    user_operations.load_users()
+    while True:
+        selection = input('\n1 - Create User\n2 - Find User UUID by email\n3 - Delete User\n4 - Print all users\n\n')
+        if selection == '1':
+            first_name = input('Enter user first name: ')
+            last_name = input('Enter user last name: ')
+            email = input('Enter user email: ')
+            phone = input('Enter user phone number: ')
+            user_operations.create_user(first_name=first_name, last_name=last_name, email=email, phone=phone)
+        elif selection == '2':
+            email = input('Enter user email to look for: ')
+            resp = user_operations.get_user_by_email(email)
+            if resp.status_code == 200:
+                print('User with email {0} has uuid {1}'.format(email, resp.body.uuid))
+            else:
+                print('User with email {0} not found.'.format(email))
+        elif selection == '3':
+            email = input('Enter user email to delete: ')
+            resp = user_operations.get_user_by_email(email)
+            if resp.status_code != 200:
+                print('User with email {0} not found.'.format(email))
+            else:
+                user_operations.delete_user_by_uuid(resp.body.uuid)
+                print('User was senselessly deleted!')
+        elif selection == '4':
+            users = user_operations.get_all_users()
+            for user in users:
+                print(user.__dict__)
+        else:
+            print('Wrong selection, try again.')
