@@ -1,5 +1,1 @@
-{"first_name": "Ilya", "last_name": "Stepanko", "email": "ilya.email@icloud.com", "phone": 7189097106, "uuid": "31af9d8f-9fd4-42ee-8b6a-4e65ebc2751f"}
-{"first_name": "Eugene", "last_name": "Krivchenko", "email": "eugene.krivchenko@gmail.com", "phone": 4087184002, "uuid": "f3adbbc4-699d-4c6a-9e99-b76e609aee1a"}
-{"first_name": "asdf", "last_name": "sdf", "email": "sdf", "phone": "sdf", "uuid": "1e95c50a-d4b6-486a-b015-cd76543d9529"}
-{"first_name": "qwe", "last_name": "qwe", "email": "qwrtt", "phone": "7189097106", "uuid": "1d13b666-510b-4f2a-a33b-3dee0e422eb4"}
-{"first_name": "asd", "last_name": "dsa", "email": "dgfggf", "phone": "7189097106", "uuid": "20c1e633-83be-4ca5-a272-00ad9bbe4645"}
+{"first_name": "1", "last_name": "1", "email": "1", "phone": "1", "uuid": "2dbb6d13-7159-46c2-9943-bc554476fc48"}
