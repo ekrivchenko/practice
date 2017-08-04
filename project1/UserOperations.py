@@ -52,7 +52,11 @@ class UserOperations:
             if self.users[user].email == email:
                 self.users[user].first_name = new_first_name
                 print("\nFirst name for that user is changed successfully")
-                #code works here... just need to write to file somehow...
+        with open('users.txt', 'w') as f:
+            users = list()
+            for user in self.users:
+                users.append(json.dumps(self.users[user].__dict__) + '\n')
+            f.writelines(users)
 
     def change_last_name(self, email):
         new_last_name = input('Please Enter new last name: ')
@@ -60,7 +64,11 @@ class UserOperations:
             if self.users[user].email == email:
                 self.users[user].last_name = new_last_name
                 print("\nLast name for that user is changed successfully")
-                # code works here... just need to write to file somehow...
+        with open('users.txt', 'w') as f:
+            users = list()
+            for user in self.users:
+                users.append(json.dumps(self.users[user].__dict__) + '\n')
+            f.writelines(users)
 
     def change_email(self, email):
         new_email = input('Please Enter new email: ')
@@ -68,5 +76,9 @@ class UserOperations:
             if self.users[user].email == email:
                 self.users[user].email = new_email
                 print("\nEmail for that user is changed successfully")
-                # code works here... just need to write to file somehow...
+        with open('users.txt', 'w') as f:
+            users = list()
+            for user in self.users:
+                users.append(json.dumps(self.users[user].__dict__) + '\n')
+            f.writelines(users)
 
