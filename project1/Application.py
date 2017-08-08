@@ -27,7 +27,7 @@ if __name__ == '__main__':
                 print('User with email {0} not found.'.format(email))
             else:
                 user_operations.delete_user_by_uuid(resp.body.uuid)
-                print('User was successfully deleted!')
+                print('\nUser was successfully deleted!')
         elif selection == '4':
             users = user_operations.get_all_users()
             for user in users:

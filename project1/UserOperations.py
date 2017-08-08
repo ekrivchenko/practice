@@ -1,5 +1,5 @@
-from project1.UtilsClass import *
-from project1.UserClass import *
+from project1.Utils import *
+from project1.BaseObjects import *
 import json
 
 class UserOperations:
@@ -51,34 +51,33 @@ class UserOperations:
         for user in self.users:
             if self.users[user].email == email:
                 self.users[user].first_name = new_first_name
-                print("\nFirst name for that user is changed successfully")
         with open('users.txt', 'w') as f:
             users = list()
             for user in self.users:
                 users.append(json.dumps(self.users[user].__dict__) + '\n')
             f.writelines(users)
+            print("\nFirst name for that user is changed successfully")
 
     def change_last_name(self, email):
         new_last_name = input('Please Enter new last name: ')
         for user in self.users:
             if self.users[user].email == email:
                 self.users[user].last_name = new_last_name
-                print("\nLast name for that user is changed successfully")
         with open('users.txt', 'w') as f:
             users = list()
             for user in self.users:
                 users.append(json.dumps(self.users[user].__dict__) + '\n')
             f.writelines(users)
+            print("\nLast name for that user is changed successfully")
 
     def change_email(self, email):
         new_email = input('Please Enter new email: ')
         for user in self.users:
             if self.users[user].email == email:
                 self.users[user].email = new_email
-                print("\nEmail for that user is changed successfully")
         with open('users.txt', 'w') as f:
             users = list()
             for user in self.users:
                 users.append(json.dumps(self.users[user].__dict__) + '\n')
             f.writelines(users)
-
+            print("\nLast name for that user is changed successfully")
